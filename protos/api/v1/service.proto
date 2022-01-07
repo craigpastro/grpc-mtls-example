@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package protos.api.v1;
+option go_package="/protos/apiv1";
+
+service Service {
+    rpc Echo(EchoRequest) returns (EchoResponse) {}
+}
+
+message EchoRequest {
+    string say = 1;
+}
+
+message EchoResponse {
+    string said = 1;
+}
