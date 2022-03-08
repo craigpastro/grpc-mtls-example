@@ -19,7 +19,7 @@ func Authenticate(ctx context.Context, req interface{}, info *grpc.UnaryServerIn
 			for _, item := range mtls.State.PeerCertificates {
 				for _, organization := range item.Subject.Organization {
 					if organization == echoScope {
-						log.Println("authentication")
+						log.Println("authenticated")
 						return handler(ctx, req)
 					}
 				}
@@ -27,6 +27,6 @@ func Authenticate(ctx context.Context, req interface{}, info *grpc.UnaryServerIn
 		}
 	}
 
-	log.Println("not authentication")
+	log.Println("unauthentication")
 	return nil, status.Error(codes.Unauthenticated, "Unauthenticated")
 }
